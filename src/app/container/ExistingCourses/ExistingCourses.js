@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateInput } from '../../actions/existingCourseActions';
 
-
 class ExistingCourses extends React.Component {
   handleUpdateInput(event) {
     this.props.updateInput(event);
@@ -17,12 +16,15 @@ class ExistingCourses extends React.Component {
       );
     });
     let courseTopicOptions = courseConst.courseList.map((courseTopics) => {
+      if (this.props.existingCourses.courseName === courseTopics.course) {
 
-      return courseTopics.topics.map((eachCourse, index) => {
-        return (
-          <li key={index}>{eachCourse}</li>
-        );
-      });
+        return courseTopics.topics.map((eachCourse, index) => {
+            return (
+              <li key={index}>{eachCourse}</li>
+            );
+          });
+      }
+
     });
     return (
       <section id='existingCourses-section' className='container-fluid'>
@@ -46,7 +48,6 @@ class ExistingCourses extends React.Component {
     );
   }
 }
-
 
 const mapStateToProps = (_state) => {
     let state = _state;
