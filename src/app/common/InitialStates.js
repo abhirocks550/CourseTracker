@@ -1,9 +1,12 @@
 export const addCourse = {
-  courseId: '',
+  courseName: '',
   courseTitle: '',
   courseURL: '',
-  topics: [],
+  topics: [
+    { topic: '', },
+  ],
 };
 export const existingCourse = {
   coursesList: [],
+  courseName: 'React',
 };

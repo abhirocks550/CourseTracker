@@ -1,6 +1,6 @@
 import React from 'react';
 import './NavigationBar.css';
-import { Link } from 'react-router';
+import { Link, IndexLink } from 'react-router';
 
 const NavBar = (props) => {
     let navBarSection =
@@ -11,12 +11,18 @@ const NavBar = (props) => {
                         <span>Course Tracker</span>
                     </div>
                     <ul className="nav navbar-nav">
-                        <li><Link to="/" activeClassName="active" >Add Course</Link></li>
+                        <li><IndexLink to="/" activeClassName="active" >Add Course</IndexLink></li>
                         <li>
-                            <Link to="/existingCourse" activeClassName="active">Existing Courses</Link></li>
+                            <Link to="existingCourses"
+                                activeClassName="active">
+                                Existing Courses</Link>
+                        </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><Link to="#"><span className="glyphicon glyphicon-log-in"></span> Logout</Link></li>
+                        <li><Link to="#">
+                            <span className="glyphicon glyphicon-log-out" />
+                            <span> Logout</span>
+                        </Link></li>
                     </ul>
                 </div>
             </nav>
