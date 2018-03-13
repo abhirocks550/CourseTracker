@@ -2,8 +2,6 @@ import React from 'react';
 import { InputBox } from '../../common/InputGroup/InputBox';
 import { bindActionCreators } from 'redux';
 
-// import * as addCourseActions from '../actions/addCourseActions';
-
 import { connect } from 'react-redux';
 import { updateInput, addTopic, updateTopic } from '../../actions/addCourseActions';
 

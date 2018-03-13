@@ -25,3 +25,4 @@ export const updateTopic = (details) => {
           payload: details,
         };
 };
+

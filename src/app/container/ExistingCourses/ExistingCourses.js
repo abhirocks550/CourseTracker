@@ -3,6 +3,8 @@ import * as courseConst from '../../common/Constants';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateInput } from '../../actions/existingCourseActions';
+import './ExistingCourse.css';
+import { Link } from 'react-router';
 
 class ExistingCourses extends React.Component {
   handleUpdateInput(event) {
@@ -12,7 +14,9 @@ class ExistingCourses extends React.Component {
   render() {
     let courseListOptions = courseConst.courseList.map((courseName, index) => {
       return (
-        <option key={index}>{courseName.course}</option>
+        <option key={index}>
+            {courseName.course}
+        </option>
       );
     });
     let courseTopicOptions = courseConst.courseList.map((courseTopics) => {
@@ -20,7 +24,12 @@ class ExistingCourses extends React.Component {
 
         return courseTopics.topics.map((eachCourse, index) => {
             return (
-              <li key={index}>{eachCourse}</li>
+              <li key={index}>
+               <Link to="/"
+                activeClassName="active">
+                {eachCourse}
+                </Link>                 
+              </li>
             );
           });
       }
@@ -28,15 +37,16 @@ class ExistingCourses extends React.Component {
     });
     return (
       <section id='existingCourses-section' className='container-fluid'>
-        <select name="courseName"
-        value={this.props.existingCourses.courseName}
-         onChange={(event)=> this.handleUpdateInput(event)} >
-          {courseListOptions}
-        </select>
-
         <div className="row no-margin">
-          <div className="col-md-12">
-            <h2>List of Topics for course </h2>
+          <div className="col-md-6 col-md-offset-3 courseContainer">
+          <h2>Select Course:</h2> 
+          <select name="courseName"
+            className="select-course"
+            value={this.props.existingCourses.courseName}
+            onChange={(event)=> this.handleUpdateInput(event)} >
+              {courseListOptions}
+          </select>
+            <h3>List of Topics for course </h3>
 
             <ul>
               {courseTopicOptions}
