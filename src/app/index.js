@@ -6,6 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './container/App';
 import AddCourse from './container/AddCourse/AddCourse';
 import ExistingCourses from './container/ExistingCourses/ExistingCourses';
+import TrackCourse from '../app/container/TrackCourse/TrackCourse';
 import './index.css';
 
 render(
@@ -14,6 +15,7 @@ render(
             <Route path="/" component={App} >
                 <IndexRoute component={AddCourse} />
                 <Route path='existingCourses' component={ExistingCourses}/>
+                <Route path='trackCourse' component={TrackCourse}/>
             </Route>
         </Router>
     </Provider>, window.document.getElementById('app'));

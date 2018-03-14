@@ -25,7 +25,7 @@ class ExistingCourses extends React.Component {
         return courseTopics.topics.map((eachCourse, index) => {
             return (
               <li key={index}>
-               <Link to="/"
+               <Link to="/trackCourse"
                 activeClassName="active">
                 {eachCourse}
                 </Link>                 

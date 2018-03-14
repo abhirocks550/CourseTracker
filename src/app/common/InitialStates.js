@@ -10,3 +10,8 @@ export const existingCourse = {
   coursesList: [],
   courseName: 'React',
 };
+
+export const trackCourse = {
+  courseName: '',
+  courseDescription: '',
+};

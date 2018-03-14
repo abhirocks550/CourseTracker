@@ -17,6 +17,11 @@ const NavBar = (props) => {
                                 activeClassName="active">
                                 Existing Courses</Link>
                         </li>
+                        <li>
+                            <Link to="trackCourse"
+                                activeClassName="active">
+                                Track Course</Link>
+                        </li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li><Link to="#">
