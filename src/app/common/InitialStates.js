@@ -14,4 +14,6 @@ export const existingCourse = {
 export const trackCourse = {
   courseName: '',
   courseDescription: '',
+  ableToTeach: false,
+  status: 'yet to start',
 };

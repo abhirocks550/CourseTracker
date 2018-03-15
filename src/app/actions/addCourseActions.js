@@ -5,13 +5,6 @@ export const updateInput = (event) => {
     };
 };
 
-export const setValue = (details) => {
-      return {
-              type: 'AC_SET_VALUE',
-              payload: details,
-            };
-    };
-
 export const addTopic = () => {
   return {
           type: 'AC_ADD_TOPIC',

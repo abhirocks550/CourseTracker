@@ -2,7 +2,7 @@ import React from 'react';
 import * as courseConst from '../../common/Constants';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateInput } from '../../actions/existingCourseActions';
+import { updateInput, setValue } from '../../actions/existingCourseActions';
 import './ExistingCourse.css';
 import { Link } from 'react-router';
 
@@ -11,11 +11,15 @@ class ExistingCourses extends React.Component {
     this.props.updateInput(event);
   }
 
+  onClickListItem(topic) {
+    this.props.setValue({ setFor: 'selectedTopic', val: topic });
+  }
+
   render() {
     let courseListOptions = courseConst.courseList.map((courseName, index) => {
       return (
         <option key={index}>
-            {courseName.course}
+          {courseName.course}
         </option>
       );
     });
@@ -23,15 +27,16 @@ class ExistingCourses extends React.Component {
       if (this.props.existingCourses.courseName === courseTopics.course) {
 
         return courseTopics.topics.map((eachCourse, index) => {
-            return (
-              <li key={index}>
-               <Link to="/trackCourse"
+          return (
+            <li key={index}
+            onClick={() => this.onClickListItem(eachCourse)}>
+              <Link to="/trackCourse"
                 activeClassName="active">
                 {eachCourse}
-                </Link>                 
-              </li>
-            );
-          });
+              </Link>
+            </li>
+          );
+        });
       }
 
     });
@@ -39,13 +44,13 @@ class ExistingCourses extends React.Component {
       <section id='existingCourses-section' className='container-fluid'>
         <div className="row no-margin">
           <div className="col-md-6 col-md-offset-3 courseContainer">
-          <h2>Select Course:</h2> 
-          <select name="courseName"
-            className="select-course"
-            value={this.props.existingCourses.courseName}
-            onChange={(event)=> this.handleUpdateInput(event)} >
+            <h2>Select Course:</h2>
+            <select name="courseName"
+              className="select-course"
+              value={this.props.existingCourses.courseName}
+              onChange={(event) => this.handleUpdateInput(event)} >
               {courseListOptions}
-          </select>
+            </select>
             <h3>List of Topics for course </h3>
 
             <ul>
@@ -60,15 +65,15 @@ class ExistingCourses extends React.Component {
 }
 
 const mapStateToProps = (_state) => {
-    let state = _state;
-    return {
-        existingCourses: state.existingCourses,
-      };
+  let state = _state;
+  return {
+    existingCourses: state.existingCourses,
   };
+};
 
 const mapDispatchToProps = (_dispatch) => {
-    let dispatch = _dispatch;
-    return bindActionCreators({ updateInput }, dispatch);
-  };
+  let dispatch = _dispatch;
+  return bindActionCreators({ updateInput, setValue }, dispatch);
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExistingCourses);

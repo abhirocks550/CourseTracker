@@ -11,3 +11,10 @@ export const getCourses = (courseName) => {
       payload: courseName,
     };
 };
+
+export const setValue = (details) => {
+  return {
+          type: 'EC_SET_VALUE',
+          payload: details,
+        };
+};

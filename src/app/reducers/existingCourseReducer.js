@@ -17,7 +17,12 @@ const existingCourse = (state = initialStates.existingCourse, action) =>  {
           }),
         };
     break;
-
+    case 'EC_SET_VALUE':
+      state = {
+          ...state,
+          [action.payload.setFor]: action.payload.val,
+        };
+    break;
   };
     return state;
   };

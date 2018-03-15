@@ -59,6 +59,7 @@ class AddCourse extends React.Component {
                                     let placeholder = 'Topic-' + (index + 1);
                                     return (
                                                 <InputBox
+                                                key={index}
                                                 required="required"
                                                 name="topic"
                                                 type='text'

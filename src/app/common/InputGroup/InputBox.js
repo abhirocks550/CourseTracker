@@ -3,7 +3,8 @@ import classnames from 'classnames';
 import './InputBox.css';
 
 export const InputBox = (props) => {
-    let { name, label, type, value, placeholder, onChange, errors, required, className } = props;
+    let { name, label, type, value, placeholder, onChange, errors, required, className, checked }
+     = props;
     return (
         <div className='form-group'>
             <div>
@@ -11,6 +12,7 @@ export const InputBox = (props) => {
                 <input type={type}
                     required={required}
                     value={value}
+                    checked={checked}
                     name={name}
                     className={classnames('form-control', { 'hasError': errors }, className)}
                     placeholder={placeholder}
