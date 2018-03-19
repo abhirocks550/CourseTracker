@@ -3,9 +3,20 @@ import { InputBox } from '../../common/InputGroup/InputBox';
 import { bindActionCreators } from 'redux';
 
 import { connect } from 'react-redux';
-import { updateInput, addTopic, updateTopic } from '../../actions/addCourseActions';
+import { updateInput, addTopic, updateTopic, saveCourse } from '../../actions/addCourseActions';
 
 class AddCourse extends React.Component {
+  handleSave(event) {
+    event.preventDefault();
+    let data = {
+        courseName: this.props.addCourse.courseName,
+        courseTitle: this.props.addCourse.courseTitle,
+        link: this.props.addCourse.url,
+        topic: this.props.addCourse.topics,
+      };
+    this.props.saveCourse(data);
+  }
+
   updateInput(event) {
     this.props.updateInput(event);
   }
@@ -18,7 +29,7 @@ class AddCourse extends React.Component {
     return (
         <section id='addCourse-section' className='container-fluid'>
                 <div className='col-md-6 col-md-offset-3' id="form-div">
-                    <form method="POST" onSubmit={() => alert('Worked')}>
+                    <form onSubmit={() => alert('Submitted')}>
 
                         <div className="row no-margin">
 
@@ -42,7 +53,7 @@ class AddCourse extends React.Component {
 
                             <InputBox
                             required="required"
-                            value={this.props.addCourse.url}
+                            value={this.props.addCourse.courseURL}
                             label='URL:'
                             name='courseURL'
                             type='url'
@@ -61,7 +72,8 @@ class AddCourse extends React.Component {
                                                 <InputBox
                                                 key={index}
                                                 required="required"
-                                                name="topic"
+                                                value={topic.topicName}
+                                                name="topicName"
                                                 type='text'
                                                 placeholder={placeholder}
                                                 onChange={
@@ -78,11 +90,13 @@ class AddCourse extends React.Component {
                         <div className="row no-margin">
                             <button
                             disabled={this.props.addCourse.topics.slice(-1)[0].topic === ''}
-                            className="btn col-md-3" type="button"
+                            className="btn btn-default col-md-3" type="button"
                             onClick={() => this.addTopic()}>+</button>
                             <button
                             className="btn btn-primary col-md-3 col-md-offset-6"
-                            type="submit">save</button>
+                            type="submit"
+                            onClick={(event) => this.handleSave(event)}
+                            >save</button>
                         </div>
 
                     </form>
@@ -100,7 +114,7 @@ const mapStateToProps = (_state) => {
 
 const mapDispatchToProps = (_dispatch) => {
     let dispatch = _dispatch;
-    return bindActionCreators({ updateInput, addTopic, updateTopic }, dispatch);
+    return bindActionCreators({ updateInput, addTopic, updateTopic, saveCourse }, dispatch);
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddCourse);

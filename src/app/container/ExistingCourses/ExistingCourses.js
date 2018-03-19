@@ -1,5 +1,4 @@
 import React from 'react';
-import * as courseConst from '../../common/Constants';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { updateInput, setValue, getAllCourses } from '../../actions/existingCourseActions';

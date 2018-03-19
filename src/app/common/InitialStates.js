@@ -3,7 +3,7 @@ export const addCourse = {
   courseTitle: '',
   courseURL: '',
   topics: [
-    { topic: '', },
+    { topicName: '', },
   ],
 };
 export const existingCourse = {

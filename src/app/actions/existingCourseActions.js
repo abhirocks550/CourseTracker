@@ -16,7 +16,7 @@ export const setValue = (details) => {
 
 export const getAllCourses = (details) => {
   return dispatch => {
-    return dispatch({
+    dispatch({
       type: 'EC_GET_COURSE',
       payload: new Promise((resolve, reject) => {
         resolve(axios.get('http://localhost:3000/course/rest/getAllCourse'));
