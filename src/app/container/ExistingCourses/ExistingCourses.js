@@ -2,11 +2,15 @@ import React from 'react';
 import * as courseConst from '../../common/Constants';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { updateInput, setValue } from '../../actions/existingCourseActions';
+import { updateInput, setValue, getAllCourses } from '../../actions/existingCourseActions';
 import './ExistingCourse.css';
 import { Link } from 'react-router';
 
 class ExistingCourses extends React.Component {
+  componentWillMount() {
+    this.props.getAllCourses();
+  }
+
   handleUpdateInput(event) {
     this.props.updateInput(event);
   }
@@ -16,23 +20,23 @@ class ExistingCourses extends React.Component {
   }
 
   render() {
-    let courseListOptions = courseConst.courseList.map((courseName, index) => {
+    let courseListOptions = this.props.existingCourses.coursesList.map((course, index) => {
       return (
         <option key={index}>
-          {courseName.course}
+          {course.courseName}
         </option>
       );
     });
-    let courseTopicOptions = courseConst.courseList.map((courseTopics) => {
-      if (this.props.existingCourses.courseName === courseTopics.course) {
+    let courseTopicOptions = this.props.existingCourses.coursesList.map((courseTopics) => {
+      if (this.props.existingCourses.courseName === courseTopics.courseName) {
 
-        return courseTopics.topics.map((eachCourse, index) => {
+        return courseTopics.title.map((eachCourse, index) => {
           return (
-            <li key={index}
+            <li key={index }
             onClick={() => this.onClickListItem(eachCourse)}>
               <Link to="/trackCourse"
                 activeClassName="active">
-                {eachCourse}
+                {eachCourse.courseTitle}
               </Link>
             </li>
           );
@@ -73,7 +77,7 @@ const mapStateToProps = (_state) => {
 
 const mapDispatchToProps = (_dispatch) => {
   let dispatch = _dispatch;
-  return bindActionCreators({ updateInput, setValue }, dispatch);
+  return bindActionCreators({ updateInput, setValue, getAllCourses }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExistingCourses);

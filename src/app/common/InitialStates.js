@@ -8,7 +8,7 @@ export const addCourse = {
 };
 export const existingCourse = {
   coursesList: [],
-  courseName: 'React',
+  courseName: 'HTML',
 };
 
 export const trackCourse = {

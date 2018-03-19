@@ -23,6 +23,12 @@ const existingCourse = (state = initialStates.existingCourse, action) =>  {
           [action.payload.setFor]: action.payload.val,
         };
     break;
+    case 'EC_GET_COURSE_FULFILLED':
+      state = {
+          ...state,
+          coursesList: action.payload.data,
+        };
+    break;
   };
     return state;
   };
